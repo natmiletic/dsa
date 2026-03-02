@@ -1,9 +1,9 @@
-const CACHE = 'dsa-v2';
+const CACHE = 'dsa-v3';
 
 const ASSETS = [
   '/',
   '/index.html',
-  '/script.js',
+  '/js/script.js',
   '/img/hero.jpg',
   '/img/philosophy-bg.jpg',
   '/img/portfolio/1.jpg',
