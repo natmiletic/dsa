@@ -6,13 +6,11 @@
   <title>DSA Automotive Inc — Premium Automotive Sales & Appraisals, Greater Toronto Area</title>
   <meta name="description" content="DSA Automotive Inc offers premium automotive sales, special vehicle orders, international shipping, and certified appraisals in the Greater Toronto Area." />
 
-  <!-- Fonts: Instrument Sans + Lora + IBM Plex Mono -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Lora:ital,wght@0,400;0,600;1,400;1,600;1,700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <!-- Fonts: Instrument Sans + Lora + IBM Plex Mono (local) -->
+  <link rel="stylesheet" href="fonts/fonts.css" />
 
-  <!-- Tailwind CSS Play CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Tailwind CSS (local) -->
+  <script src="js/tailwind.js"></script>
 
   <!-- GSAP + ScrollTrigger (deferred) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
@@ -97,7 +95,7 @@
     <!-- Background Image -->
     <img
       id="hero-bg"
-      src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1200&q=80"
+      src="img/hero.jpg"
       alt="Premium automotive vehicle in motion — DSA Automotive Inc"
       fetchpriority="high"
       class="absolute inset-0 w-full h-full object-cover"
@@ -289,7 +287,7 @@
         <!-- 1: Ferrari, Mercedes G Wagon -->
         <div class="group relative rounded-3xl overflow-hidden bg-espresso/50">
           <div class="aspect-[4/3]">
-            <img src="https://dsaauto.com/img/portfolio/thumbnails/1.jpg" alt="Ferrari and Mercedes G Wagon" loading="lazy"
+            <img src="img/portfolio/1.jpg" alt="Ferrari and Mercedes G Wagon" loading="lazy"
               class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               onerror="this.style.opacity='0'" />
           </div>
@@ -298,7 +296,7 @@
         <!-- 2: Jeep Grand Cherokee -->
         <div class="group relative rounded-3xl overflow-hidden bg-espresso/50">
           <div class="aspect-[4/3]">
-            <img src="https://dsaauto.com/img/portfolio/thumbnails/7.jpg" alt="Jeep Grand Cherokee" loading="lazy"
+            <img src="img/portfolio/7.jpg" alt="Jeep Grand Cherokee" loading="lazy"
               class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               onerror="this.style.opacity='0'" />
           </div>
@@ -307,7 +305,7 @@
         <!-- 3: Aston Martin -->
         <div class="group relative rounded-3xl overflow-hidden bg-espresso/50">
           <div class="aspect-[4/3]">
-            <img src="https://dsaauto.com/img/portfolio/thumbnails/8.jpg" alt="Aston Martin" loading="lazy"
+            <img src="img/portfolio/8.jpg" alt="Aston Martin" loading="lazy"
               class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               onerror="this.style.opacity='0'" />
           </div>
@@ -316,7 +314,7 @@
         <!-- 4: Harley-Davidson -->
         <div class="group relative rounded-3xl overflow-hidden bg-espresso/50">
           <div class="aspect-[4/3]">
-            <img src="https://dsaauto.com/img/portfolio/thumbnails/4.jpg" alt="Harley-Davidson" loading="lazy"
+            <img src="img/portfolio/4.jpg" alt="Harley-Davidson" loading="lazy"
               class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               onerror="this.style.opacity='0'" />
           </div>
@@ -325,7 +323,7 @@
         <!-- 5: Ferrari -->
         <div class="group relative rounded-3xl overflow-hidden bg-espresso/50">
           <div class="aspect-[4/3]">
-            <img src="https://dsaauto.com/img/portfolio/thumbnails/5.jpg" alt="Ferrari" loading="lazy"
+            <img src="img/portfolio/5.jpg" alt="Ferrari" loading="lazy"
               class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               onerror="this.style.opacity='0'" />
           </div>
@@ -334,7 +332,7 @@
         <!-- 6: Porsche -->
         <div class="group relative rounded-3xl overflow-hidden bg-espresso/50">
           <div class="aspect-[4/3]">
-            <img src="https://dsaauto.com/img/portfolio/thumbnails/6.jpg" alt="Porsche" loading="lazy"
+            <img src="img/portfolio/6.jpg" alt="Porsche" loading="lazy"
               class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               onerror="this.style.opacity='0'" />
           </div>
@@ -359,7 +357,7 @@
     <!-- Parallax Texture Image -->
     <img
       id="philosophy-bg"
-      src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=600&q=75"
+      src="img/philosophy-bg.jpg"
       alt="Exotic luxury car"
       loading="lazy"
       class="absolute inset-0 w-full h-full object-cover opacity-[0.08] pointer-events-none select-none"
