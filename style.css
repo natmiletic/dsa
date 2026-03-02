@@ -1,0 +1,359 @@
+/* =============================================================
+   DSA Automotive Inc — style.css
+   Preset F: Desert Mono
+   ============================================================= */
+
+/* ── Custom Properties ── */
+:root {
+  --sand:       #C2B59B;
+  --terracotta: #C75C2E;
+  --parchment:  #F5F0E8;
+  --espresso:   #2C2118;
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* ── Reset & Base ── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Noise Overlay ──
+   Fixed SVG feTurbulence filter at 0.05 opacity
+   pointer-events: none so it never intercepts clicks */
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 200px 200px;
+}
+
+/* ── Typography ── */
+.font-serif-italic {
+  font-family: 'Lora', Georgia, 'Times New Roman', serif;
+  font-style: italic;
+}
+
+/* ── NAVBAR ── */
+.navbar-pill {
+  background: transparent;
+  border: 1px solid transparent;
+}
+
+.navbar-pill.scrolled {
+  background: rgba(245, 240, 232, 0.65);
+  border-color: rgba(194, 181, 155, 0.3);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 4px 32px rgba(44, 33, 24, 0.08);
+}
+
+/* Nav logo + links color states */
+.nav-logo,
+.nav-link {
+  color: rgba(245, 240, 232, 0.9);
+  transition: color 0.4s ease, opacity 0.3s ease;
+}
+
+.navbar-pill.scrolled .nav-logo,
+.navbar-pill.scrolled .nav-link {
+  color: var(--espresso);
+}
+
+/* Mobile hamburger lines */
+.ham-line {
+  background: rgba(245, 240, 232, 0.9);
+  transition: background 0.4s ease, transform 0.3s ease, opacity 0.3s ease, width 0.3s ease;
+}
+
+.navbar-pill.scrolled .ham-line {
+  background: var(--espresso);
+}
+
+/* Menu-open state for hamburger */
+#hamburger.is-open .ham-line:nth-child(1) {
+  transform: translateY(6.5px) rotate(45deg);
+}
+#hamburger.is-open .ham-line:nth-child(2) {
+  transform: translateY(0) rotate(-45deg);
+}
+#hamburger.is-open .ham-line:nth-child(3) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+/* Mobile menu visible state */
+#mobile-menu.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.mobile-link {
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.mobile-link:hover {
+  transform: translateY(-2px);
+}
+
+/* ── BUTTONS ── */
+.btn-primary {
+  position: relative;
+  overflow: hidden;
+  background: var(--terracotta);
+  color: var(--parchment);
+  border: 1.5px solid var(--terracotta);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  transition: transform 0.25s var(--ease-smooth), box-shadow 0.25s var(--ease-smooth);
+  isolation: isolate;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: color-mix(in srgb, var(--terracotta) 80%, var(--espresso));
+  z-index: -1;
+  transform: translateY(101%);
+  transition: transform 0.35s var(--ease-smooth);
+}
+
+.btn-primary:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 32px rgba(199, 92, 46, 0.35);
+}
+
+.btn-primary:hover::before {
+  transform: translateY(0);
+}
+
+.btn-ghost {
+  color: rgba(245, 240, 232, 0.7);
+  border: 1.5px solid rgba(245, 240, 232, 0.25);
+  background: transparent;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  transition: color 0.25s ease, border-color 0.25s ease, transform 0.25s var(--ease-smooth);
+}
+
+.btn-ghost:hover {
+  color: var(--parchment);
+  border-color: rgba(245, 240, 232, 0.6);
+  transform: scale(1.02);
+}
+
+/* nav CTA uses terracotta but smaller */
+.nav-cta {
+  padding: 0.55rem 1.25rem;
+  font-size: 0.8125rem;
+}
+
+/* ── HERO ── */
+/* GSAP handles opacity/transform animations.
+   Default state: visible, in place. */
+[data-hero-animate] {
+  opacity: 1;
+  transform: none;
+}
+
+/* Scroll bar animation */
+.scroll-bar {
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.3; transform: scaleY(1); }
+  50%       { opacity: 0.7; transform: scaleY(1.15); }
+}
+
+/* ── FEATURE CARDS ── */
+.feature-card {
+  background: var(--parchment);
+  transition: transform 0.3s var(--ease-smooth), box-shadow 0.3s var(--ease-smooth);
+}
+
+.feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(44, 33, 24, 0.1);
+}
+
+/* Metric Ticker — glow pulse after count-up */
+.metric-num {
+  transition: text-shadow 0.4s ease;
+}
+
+.metric-num.glowing {
+  text-shadow: 0 0 20px rgba(199, 92, 46, 0.6), 0 0 40px rgba(199, 92, 46, 0.25);
+}
+
+/* Pipeline */
+.pipe-node {
+  transition: fill 0.4s ease, stroke 0.4s ease;
+}
+
+.pipe-node.active {
+  fill: var(--terracotta);
+  stroke: var(--terracotta);
+}
+
+.pipe-stage-label {
+  transition: opacity 0.3s ease;
+}
+
+/* Network Graph */
+.net-node {
+  /* float animation set by GSAP */
+}
+
+/* ── PHILOSOPHY ── */
+/* Split-word span animation — GSAP sets initial opacity */
+.word-span {
+  display: inline-block;
+  opacity: 1;
+  transform: none;
+}
+
+/* ── PROTOCOL CARDS ── */
+/* Desktop: each outer wrapper provides extra scroll distance so the
+   next card genuinely rises up from below while the previous card
+   sits sticky — no pin needed, no overflow:hidden interference. */
+@media (min-width: 768px) {
+  .protocol-card-outer {
+    height: 120vh; /* 80vh card + 40vh dwell before next card enters */
+  }
+
+  .protocol-card-outer--last {
+    height: 80vh; /* match card height */
+  }
+
+  .protocol-card {
+    position: sticky;
+    top: 0;
+    height: 80vh;
+    min-height: 0; /* override Tailwind min-h-[80vh] which would win over height */
+    will-change: transform, opacity, filter;
+    transform-origin: center 30%;
+  }
+}
+
+/* Mobile: plain vertical stack */
+@media (max-width: 767px) {
+  .protocol-card-outer {
+    margin-bottom: 2rem;
+  }
+  .protocol-card-outer--last {
+    margin-bottom: 0;
+  }
+  .protocol-card {
+    position: static;
+    min-height: 80vh;
+  }
+}
+
+/* ── SCAN GRID + LASER (Protocol Card 2) ── */
+.scan-grid-wrap {
+  background-image:
+    linear-gradient(rgba(44,33,24,0.15) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(44,33,24,0.15) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+.scan-laser {
+  top: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(44, 33, 24, 0.4) 40%,
+    rgba(199, 92, 46, 0.5) 50%,
+    rgba(44, 33, 24, 0.4) 60%,
+    transparent
+  );
+  animation: laserScan 3.5s linear infinite;
+}
+
+@keyframes laserScan {
+  0%   { top: -2px; opacity: 0; }
+  5%   { opacity: 1; }
+  95%  { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+
+/* ── EKG Waveform (Protocol Card 3) ── */
+#ekg-path {
+  stroke-dasharray: 800;
+  stroke-dashoffset: 800;
+  /* GSAP handles animation; CSS fallback shows path statically if GSAP fails */
+}
+
+/* Fallback: show path if no GSAP */
+@media (prefers-reduced-motion: reduce) {
+  #ekg-path {
+    stroke-dashoffset: 0;
+    animation: none;
+  }
+  .scan-laser { animation: none; top: 50%; }
+  .scroll-bar { animation: none; }
+}
+
+/* ── FOOTER STATUS DOT ── */
+.status-dot { display: inline-flex; }
+
+/* ── SELECTION ── */
+::selection {
+  background: rgba(199, 92, 46, 0.2);
+  color: var(--espresso);
+}
+
+/* ── FOCUS VISIBLE ── */
+:focus-visible {
+  outline: 2px solid var(--terracotta);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ── RESPONSIVE: MOBILE ── */
+@media (max-width: 767px) {
+
+  /* Protocol cards: stacked flow handled above */
+
+  /* Hero typescale handled by clamp() inline */
+
+  /* Philosophy */
+  #philosophy {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+
+  #phil-line-2 {
+    font-size: 1.6rem;
+    line-height: 1.2;
+  }
+
+  /* Feature cards: full width stack */
+  .pipeline-wrap svg {
+    /* On very small screens reduce viewBox scaling — SVG scales naturally */
+  }
+
+  /* Network: reduce node float range — handled in JS IntersectionObserver */
+
+  /* CTA full width buttons already use w-full sm:w-auto */
+
+  /* Footer columns stack — Tailwind grid-cols-1 handles this */
+}
+
+/* ── PERFORMANCE: prevent backdrop blur overuse ──
+   Only navbar uses backdrop-filter + mobile-menu (2 max). */
