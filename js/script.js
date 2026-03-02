@@ -95,24 +95,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // ============================================================
-  // GSAP + SCROLL TRIGGER ANIMATIONS
+  // GSAP + ANIMATIONS — deferred to after first paint
+  // Wrapping in rAF pushes reflows caused by gsap.set() / layout
+  // reads out of the critical rendering path, improving LCP.
   // ============================================================
-  if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+  requestAnimationFrame(() => {
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+      gsap.registerPlugin(ScrollTrigger);
+      initAnimations();
+    } else {
+      console.warn('DSA: GSAP not loaded — showing all elements in default visible state.');
+    }
 
-    gsap.registerPlugin(ScrollTrigger);
-    initAnimations();
-
-  } else {
-    // Fallback: ensure all animated elements are visible
-    console.warn('DSA: GSAP not loaded — showing all elements in default visible state.');
-  }
-
-  // ============================================================
-  // FEATURE CARDS — Lazy init via IntersectionObserver
-  // ============================================================
-  initMetricTicker();
-  initPipeline();
-  initNetworkGraph();
+    initMetricTicker();
+    initPipeline();
+    initNetworkGraph();
+  });
 
 }); // end DOMContentLoaded
 
